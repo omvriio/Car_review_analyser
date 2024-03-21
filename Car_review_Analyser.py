@@ -71,9 +71,6 @@ if "chat_session" not in st.session_state:
 
 st.image('logof.png', use_column_width=True)
 
-# Display the chatbot's title on the page
-st.title("Car review Analyser 🚗")
-
 
 # Input field for user's message
 user_prompt = st.chat_input("Give me the review...")
