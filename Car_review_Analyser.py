@@ -55,7 +55,7 @@ load_dotenv()
 # Configure Streamlit page settings
 st.set_page_config(
     page_title="Car review",
-    page_icon=":car:",  # Favicon emoji
+    page_icon="🟡",  # Favicon emoji
     layout="centered",  # Page layout option
 )
 
@@ -71,10 +71,21 @@ if "chat_session" not in st.session_state:
 
 st.image('logof.png', use_column_width=True)
 
-
 # Input field for user's message
 user_prompt = st.chat_input("Give me the review...")
 # create file uploader button at the left of the send button of the chat input
+st.markdown(
+    """
+    <style>
+    /* Change button color to yellow when hovered */
+    .stFileUploader>div:hover {
+        background-color: yellow !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 img = st.file_uploader("Upload an image for the model to generate content from: ", type=["jpg", "png", "jpeg"])
 
 if user_prompt and img:
