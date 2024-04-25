@@ -6,7 +6,7 @@ import csv
 import pandas as pd
 
 # URL of the website to scrape
-url = "https://fr.carcarekiosk.com/videos/BMW/320i/2014"
+url = "https://fr.carcarekiosk.com/"
 
 # Send a GET request to the website
 response = requests.get(url)
