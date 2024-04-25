@@ -4,6 +4,7 @@ import streamlit as st
 from dotenv import load_dotenv
 import os
 from time import sleep
+import os
 
 def prompting(user_prompt):
     prompt_template=f'''
@@ -49,7 +50,16 @@ def prompting(user_prompt):
     '''
     return prompt_template
 
+def feed():
+    # Import all images from a folder and add a name
 
+    folder_path = "./data/audi/"  # Replace with the actual folder path
+    image_names=[]
+    for filename in os.listdir(folder_path):
+        if filename.endswith(".jpg") or filename.endswith(".png") or filename.endswith(".jpeg"):
+            image_path = os.path.join(folder_path, filename)
+            image_names.append([Image.open(image_path), 'this car is '+ os.path.splitext(filename)[0]])
+    return image_names
 # Load GOOGLE_API_KEY from .env file
 load_dotenv()
 # Configure Streamlit page settings
@@ -102,7 +112,9 @@ if user_prompt and img:
 
     st.session_state.chat_session.history.append([user_prompt, "User"])
     with st.spinner('Analyzing...'):
-        gemini_response = model.generate_content([prompting(user_prompt), image])
+        x=feed()
+        x.append(['what car is this ', image])
+        gemini_response = model.generate_content(x)
     
     with st.chat_message("assistant"):
         st.markdown(gemini_response.text)
