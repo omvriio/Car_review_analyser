@@ -2,8 +2,8 @@ import streamlit as st
 import requests
 from bs4 import BeautifulSoup
 from IPython.display import Video
-import webbrowser
-import csv
+# import webbrowser
+# import csv
 import pandas as pd
 url = "https://fr.carcarekiosk.com/"
 response = requests.get(url)

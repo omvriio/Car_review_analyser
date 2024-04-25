@@ -2,3 +2,6 @@ google-generativeai
 streamlit
 pillow
 python-dotenv
+bs4
+requests
+IPython.display
