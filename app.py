@@ -77,7 +77,7 @@ def main():
     for list_group in list_group_elements:
         a_tags = list_group.find_all("a")
         for a_tag in a_tags:
-            if "/video/" in a_tag["href"]:
+            if "/video/" in a_tag["href"] and a_tag.text:
                 st.write(a_tag.text)
                 response=requests.get(a_tag["href"])
                 soup_video = BeautifulSoup(response.content, "html.parser")
