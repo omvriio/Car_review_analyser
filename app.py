@@ -78,9 +78,10 @@ def main():
         a_tags = list_group.find_all("a")
         for a_tag in a_tags:
             if "/video/" in a_tag["href"]:
-                st.write(a_tag.text)
-
-                st.video("https://pixabay.com/en/videos/star-long-exposure-starry-sky-sky-6962/")
+                response=requests.get(a_tag["href"])
+                soup_video = BeautifulSoup(response.content, "html.parser")
+                video = soup_video.find("video").find("source")["src"]
+                st.video(video)
     # Do something with the a_tags
     # Find all video tags inside the card-header class
     # videos = card_header.find_all("video")
